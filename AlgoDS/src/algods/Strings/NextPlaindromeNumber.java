@@ -69,7 +69,7 @@ public class NextPlaindromeNumber {
              */
             String s1 = flipEven(input);
             //System.out.println(s1);
-            if (Integer.parseInt(s1) > Integer.parseInt(input)) {
+            if (Integer.parseInt(s1) >= Integer.parseInt(input)) {
                 return s1;
             } else {
                 if (middleNotNineEven(input)) {
@@ -89,7 +89,7 @@ public class NextPlaindromeNumber {
             //if middle is not 9 increase middle n return 
             String s1 = flipOdd(input);
             //compare s1 with input 
-            if (Integer.parseInt(s1) > Integer.parseInt(input)) {
+            if (Integer.parseInt(s1) >= Integer.parseInt(input)) {
                 System.out.println(s1);
                 return s1;
             } else {
@@ -134,7 +134,7 @@ public class NextPlaindromeNumber {
     } //middleNotNineOdd
 
     public static void main(String[] args) {
-        int input = 8999;
+        int input = 999;
         String type;
         type = oddOrEven(input) == 1 ? "odd" : "even";
         //System.out.println(type);
