@@ -33,7 +33,7 @@ public class CoinPickStrategy {
         if(size>arr.length) {
             return F[0][arr.length-1];
         }
-        
+       
         for(int i=0,j=i+size-1;j<arr.length;i++,j++) {
             System.out.println("range of i and j are : "+ i +" "+j);
             
@@ -45,7 +45,9 @@ public class CoinPickStrategy {
             int variablePart2 = F[i][j-2]>F[i+1][j-1]?F[i+1][j-1]:F[i][j-2];
             int choice2 = arr[j]+variablePart2;
             
-            F[i][j] = choice1>choice2?choice1:choice2;
+            F[i][j] = choice1>choice2?choice1:choice2; 
+            printF(F);
+            
         }
         
         size=size+2;
@@ -64,7 +66,7 @@ public class CoinPickStrategy {
     
     public static void main(String[] args) {
         
-        int[] intArr = {8, 15, 3, 7};
+        int[] intArr = {20, 30, 2, 2, 2, 10};
         solveMaxCoinPick(intArr);
         
         
