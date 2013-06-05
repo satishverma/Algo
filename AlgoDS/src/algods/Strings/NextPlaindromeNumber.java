@@ -22,14 +22,62 @@ public class NextPlaindromeNumber {
         return count;
     }
 
+    private static String flipEven(String s) {
+        char[] cArr = s.toCharArray();
+        for (int i = 0; i < cArr.length / 2; i++) {
+            cArr[cArr.length - i - 1] = cArr[i];
+        }
+        return (String.valueOf(cArr));
+    }
+    
+    private static String updateMiddleEven(String s) {
+        char[] cArr = s.toCharArray();
+        cArr[cArr.length/2- 1] ++;
+        cArr[cArr.length/2]++;
+        
+        return (String.valueOf(cArr));
+    }
+    
+    private static boolean middleNotNineEven(String s) {
+        char[] cArr = s.toCharArray();
+        if(cArr[cArr.length/2-1]!='9') return true;
+        return false;
+    }
+    
+    private static String roundUpEven(String s) {
+        char[] cArr = s.toCharArray();
+        int i=cArr.length/2;
+        while(i>0 && cArr[i]=='9') {
+            cArr[i]='0';
+            i--;
+        } 
+        cArr[i]++;
+        
+        return (String.valueOf(cArr));
+    }
+
     private static String getNextPalindrome(String input, String type) {
         if (type == "even") {
             /*
              * TO DO 
-             * take the middle 2 numbers and flip around that 
+             * take the middle and flip, if larger return
+             * else if middle is not 9, incread
+             * else round up n flip
              * 
              */
-            
+            String s1 = flipEven(input);
+            //System.out.println(s1);
+            if (Integer.parseInt(s1) > Integer.parseInt(input)) {
+                return s1;
+            } else {
+                if (middleNotNineEven(input)) {
+                    return updateMiddleEven(s1);
+                } else {
+                    String s2 = roundUpEven(input);
+                    return flipEven(s2);
+                }
+            }
+
         }
 
         if (type == "odd") {
@@ -84,7 +132,7 @@ public class NextPlaindromeNumber {
     } //middleNotNineOdd
 
     public static void main(String[] args) {
-        int input = 11911;
+        int input = 8999;
         String type;
         type = oddOrEven(input) == 1 ? "odd" : "even";
         //System.out.println(type);
