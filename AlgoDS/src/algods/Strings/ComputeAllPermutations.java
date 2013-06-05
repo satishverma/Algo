@@ -37,7 +37,7 @@ public class ComputeAllPermutations {
     }
     
     public static void main(String[] args) {
-        String s ="AB";
+        String s ="ABCD";
         permute(s,0,s.length());
     }
 }
