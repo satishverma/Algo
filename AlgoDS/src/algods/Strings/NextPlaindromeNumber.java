@@ -29,30 +29,32 @@ public class NextPlaindromeNumber {
         }
         return (String.valueOf(cArr));
     }
-    
+
     private static String updateMiddleEven(String s) {
         char[] cArr = s.toCharArray();
-        cArr[cArr.length/2- 1] ++;
-        cArr[cArr.length/2]++;
-        
+        cArr[cArr.length / 2 - 1]++;
+        cArr[cArr.length / 2]++;
+
         return (String.valueOf(cArr));
     }
-    
+
     private static boolean middleNotNineEven(String s) {
         char[] cArr = s.toCharArray();
-        if(cArr[cArr.length/2-1]!='9') return true;
+        if (cArr[cArr.length / 2 - 1] != '9') {
+            return true;
+        }
         return false;
     }
-    
+
     private static String roundUpEven(String s) {
         char[] cArr = s.toCharArray();
-        int i=cArr.length/2;
-        while(i>0 && cArr[i]=='9') {
-            cArr[i]='0';
+        int i = cArr.length / 2;
+        while (i > 0 && cArr[i] == '9') {
+            cArr[i] = '0';
             i--;
-        } 
+        }
         cArr[i]++;
-        
+
         return (String.valueOf(cArr));
     }
 
