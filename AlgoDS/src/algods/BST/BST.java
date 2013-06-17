@@ -167,6 +167,16 @@ public class BST<Key extends Comparable<Key>,Value> {
         return (getNumLeaves(x.left)+getNumLeaves(x.right));
     }
     
+    
+    public int getTreeSize() {
+        return getTreeSize(root);
+    }
+    
+    private int getTreeSize(Node x) {
+        if(x==null) return 0;
+        return (1+getTreeSize(x.left)+getTreeSize(x.right));
+    }
+    
      public static void main(String[] args) {
         BST<Integer,String> bst = new BST<Integer,String>();
         
@@ -188,7 +198,8 @@ public class BST<Key extends Comparable<Key>,Value> {
         System.out.println("Floor : " +bst.floor(15));
         System.out.println("Height : " +bst.getHeight());
         System.out.println("Number of Leaves: "+bst.getNumLeaves());
-       
+        System.out.println("Size of tree :" + bst.getTreeSize());
+        
     } //testBST
      
      
