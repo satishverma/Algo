@@ -145,6 +145,54 @@ public class BST<Key extends Comparable<Key>,Value> {
     } //floor
     
     
+    public int getHeight() {
+        return getHeight(root);
+    }
+    
+    
+    private int getHeight(Node x) { 
+        if(x==null) return 0; 
+        return(1+Math.max(getHeight(x.left),getHeight(x.right)));
+    }
+    
+    public int getNumLeaves() {
+        return getNumLeaves(root);
+    }
+    
+    private int getNumLeaves(Node x) {
+        if(x==null) return 0;
+        
+        if(x.left==null && x.right==null) return 1;
+        
+        return (getNumLeaves(x.left)+getNumLeaves(x.right));
+    }
+    
+     public static void main(String[] args) {
+        BST<Integer,String> bst = new BST<Integer,String>();
+        
+        bst.put(10,"ten");
+        bst.put(20,"twenty");
+        bst.put(3,"thirty"); 
+        bst.put(40,"fourty");
+        bst.put(5,"fifty");
+        bst.put(13, "thirteen");
+        bst.put(25, "twentyfive");
+        bst.put(65, "sixtyfive");
+        bst.put(1,"one"); 
+        bst.put(85, "eightyfive");
+        bst.printTree();
+        
+        System.out.println("Minimum : " + bst.min());
+        System.out.println("Maximum : " + bst.max());
+        
+        System.out.println("Floor : " +bst.floor(15));
+        System.out.println("Height : " +bst.getHeight());
+        System.out.println("Number of Leaves: "+bst.getNumLeaves());
+       
+    } //testBST
+     
+     
+     
     
 }//BST
 
