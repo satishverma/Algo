@@ -72,16 +72,44 @@ public class BST<Key extends Comparable<Key>,Value> {
     
     
     
-    public void printTree() {
-        printTree(root);
+    public void printInOrderTree() {
+        printInOrderTree(root);
     }//printTree
     
-    private void printTree(Node x) {
+    private void printInOrderTree(Node x) {
         if(x==null) return;
-        printTree(x.left);
-        System.out.println(x.key +" "+x.val);
-        printTree(x.right);
+        printInOrderTree(x.left);
+        System.out.print(x.key +" "+x.val + " ");
+        printInOrderTree(x.right);
     }//printTree
+    
+    
+    
+    public void printPreOrderTree() {
+        printPreOrderTree(root);
+    }//printTree
+    
+    private void printPreOrderTree(Node x) {
+        if(x==null) return;
+        System.out.print(x.key +" "+x.val + " ");
+        printPreOrderTree(x.left);
+        printPreOrderTree(x.right);
+    }//printTree
+    
+    
+    public void printPostOrderTree() {
+        printPostOrderTree(root);
+    }//printTree
+    
+    private void printPostOrderTree(Node x) {
+        if(x==null) return;
+        printPostOrderTree(x.left);
+        printPostOrderTree(x.right);
+        
+        System.out.print(x.key +" "+x.val + " ");
+        
+    }//printTree
+    
     
     //Min, max, floor, and ceiling
     
@@ -177,6 +205,44 @@ public class BST<Key extends Comparable<Key>,Value> {
         return (1+getTreeSize(x.left)+getTreeSize(x.right));
     }
     
+    
+    
+    
+    public Key getLCA(Key v1, Key v2) {
+        //assume that keys exist
+        if(contains(v1)==true && contains(v2)==true)
+           return getLCA(root,v1,v2).key;
+        else 
+            return null;
+    }
+    
+    private Node getLCA(Node x, Key k1, Key k2) {
+        if(x==null) return null;
+        
+        if(x.key.compareTo(k1)==0 || x.key.compareTo(k2)==0) {
+            return x;
+        }
+        
+        if(x.key.compareTo(k1)>0 && x.key.compareTo(k2)<0) {
+            return x;
+        }
+        
+        if(x.key.compareTo(k1)<0 && x.key.compareTo(k2)>0) {
+            return x;
+        }
+        
+        if(x.key.compareTo(k1)<0 && x.key.compareTo(k2)<0) {
+            return getLCA(x.right,k1,k2);
+        } 
+        
+         if(x.key.compareTo(k1)>0 && x.key.compareTo(k2)>0) {
+            return getLCA(x.left,k1,k2);
+        } 
+        
+        
+        return null;
+    }
+    
      public static void main(String[] args) {
         BST<Integer,String> bst = new BST<Integer,String>();
         
@@ -190,8 +256,12 @@ public class BST<Key extends Comparable<Key>,Value> {
         bst.put(65, "sixtyfive");
         bst.put(1,"one"); 
         bst.put(85, "eightyfive");
-        bst.printTree();
-        
+        bst.printInOrderTree();
+        System.out.println();
+        bst.printPreOrderTree();
+        System.out.println();
+        bst.printPostOrderTree();
+        System.out.println();
         System.out.println("Minimum : " + bst.min());
         System.out.println("Maximum : " + bst.max());
         
@@ -199,6 +269,9 @@ public class BST<Key extends Comparable<Key>,Value> {
         System.out.println("Height : " +bst.getHeight());
         System.out.println("Number of Leaves: "+bst.getNumLeaves());
         System.out.println("Size of tree :" + bst.getTreeSize());
+        
+        //LCA
+        System.out.println("Lca: "+ bst.getLCA(25,65));
         
     } //testBST
      
