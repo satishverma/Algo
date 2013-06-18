@@ -25,6 +25,19 @@ public class BitTests {
         
     }
     
+    private static int swapEvenOddBits(int x) {
+        // Get all even bits of x 1010
+        int even_bits = x & 0xAAAAAAAA;
+
+        // Get all odd bits of x 0101
+        int odd_bits = x & 0x55555555;
+ 
+        even_bits >>= 1;  // Right shift even bits
+        odd_bits <<= 1;   // Left shift odd bits
+
+        return (even_bits | odd_bits); // Combine even and odd bits
+    } //swapEvenOddBits
+    
     private static boolean checkPowerOfTwo(int n) {
         int x = n&(n-1);
         return x==0;
@@ -38,6 +51,8 @@ public class BitTests {
         
         num=28;
         System.out.println("Is power of two : "+ num +" " + checkPowerOfTwo(num));
+        
+        System.out.println(swapEvenOddBits(23));
     }
     
 }
