@@ -25,6 +25,17 @@ public class BitTests {
         
     }
     
+    private static int flipAtoB(int a, int b) {
+        int count=0;
+        int z = a ^ b;
+        while(z>0) {
+            count += z & 1;
+            z=z>>1;
+        }
+        
+        return count;
+    }
+    
     private static int swapEvenOddBits(int x) {
         // Get all even bits of x 1010
         int even_bits = x & 0xAAAAAAAA;
@@ -53,6 +64,7 @@ public class BitTests {
         System.out.println("Is power of two : "+ num +" " + checkPowerOfTwo(num));
         
         System.out.println(swapEvenOddBits(23));
+        System.out.println("Flip Number of Changes Needed: " + flipAtoB(73,21));
     }
     
 }
