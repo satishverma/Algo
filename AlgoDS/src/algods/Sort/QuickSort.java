@@ -71,7 +71,7 @@ public class QuickSort {
     }
     
     public static void main(String[] args) {
-        final int n=10;
+        final int n=15;
         int[] intArray = new int[n];
         
         
