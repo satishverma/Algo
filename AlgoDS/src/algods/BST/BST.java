@@ -4,6 +4,9 @@
  */
 package algods.BST;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  * @author sverma
@@ -11,6 +14,7 @@ package algods.BST;
 public class BST<Key extends Comparable<Key>,Value> {
     
     private Node root;
+    private Queue<Node> pq  = new LinkedList<Node>() ;
     
     private class Node {
         private Node right;
@@ -109,6 +113,24 @@ public class BST<Key extends Comparable<Key>,Value> {
         System.out.print(x.key +" "+x.val + " ");
         
     }//printTree
+    
+    
+    public void printDFSTree() {
+        if(root==null) return;
+        //insert queue in root and call func
+        pq.add(root);
+        
+        while(pq.size()>0) {
+            Node x = pq.poll();
+            if(x!=null) {
+                if(x.left!=null) pq.add(x.left);
+                if(x.right!=null)pq.add(x.right);
+            }
+            System.out.print(" "+x.key+" "+x.val+" : ");
+        }
+    }
+    
+   
     
     
     //Min, max, floor, and ceiling
@@ -257,11 +279,11 @@ public class BST<Key extends Comparable<Key>,Value> {
         bst.put(1,"one"); 
         bst.put(85, "eightyfive");
         bst.printInOrderTree();
-        System.out.println();
+        System.out.println("Inorder Above");
         bst.printPreOrderTree();
-        System.out.println();
+        System.out.println("Pre Order Above");
         bst.printPostOrderTree();
-        System.out.println();
+        System.out.println("PostOrder");
         System.out.println("Minimum : " + bst.min());
         System.out.println("Maximum : " + bst.max());
         
@@ -272,6 +294,9 @@ public class BST<Key extends Comparable<Key>,Value> {
         
         //LCA
         System.out.println("Lca: "+ bst.getLCA(25,65));
+        
+        System.out.println("DFS: " ); 
+        bst.printDFSTree();System.out.println();
         
     } //testBST
      
