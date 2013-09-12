@@ -45,6 +45,8 @@ public class Vertex implements Comparable<Vertex> {
 	 * from the source to this vertex
 	 */
 	public static final int INFINITY = Integer.MAX_VALUE;
+        
+        public boolean isVisited = false;
 
 	public Vertex(String v)
 	{
@@ -81,5 +83,8 @@ public class Vertex implements Comparable<Vertex> {
 		else
 			return name.compareTo(other.name);
 	}
+        
+        
+        
 }
 
