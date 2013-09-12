@@ -18,16 +18,18 @@ public class Search {
     public static Stack<Vertex> stack = new Stack<Vertex>();
     
     private static void BFS(Graph G, Vertex V) {
-
+        System.out.println("BFS");
         queue.add(V); 
+        
         while(!queue.isEmpty()) {
             Vertex v = queue.poll();
-            System.out.println("Done " +v.toString());
+            if(v.isVisited==false)
+                System.out.println("Done " +v.toString());
             v.isVisited=true;
             Iterable<Vertex> itV = G.adjacentTo(v.name);
             for(Vertex vert:itV) {
                 if(vert.isVisited==false) {
-                    queue.add(vert);vert.isVisited=true;
+                    queue.add(vert);
     
                 }
             }
@@ -37,18 +39,21 @@ public class Search {
         for(Vertex vertex:itVert) {
             vertex.isVisited=false;
         }
+        
+        System.out.println("BFS Ends");
     }//BFS
     
     
     private static void DFS(Graph G, Vertex V) {
         System.out.println("DFS");
-       // System.out.println(V.name);
-        V.isVisited=true;
+      
+        
         stack.push(V);
         
         while(!stack.empty()) {
             Vertex u = stack.pop();
             System.out.println(u.name);
+            u.isVisited=true;
             Iterable<Vertex> itV = G.adjacentTo(u);
             for(Vertex v:itV) {
                 if(v.isVisited==false) {
@@ -58,7 +63,35 @@ public class Search {
             }
             
         }
+        
+        
+        System.out.println("DFS Ends");
     }
+    
+    
+    
+    
+    private static int findNumIslands() {
+        
+        int[][] islandMat = {
+            {1, 1, 0, 0, 0},
+            {0, 1, 0, 0, 1},
+            {1, 0, 0, 1, 1},
+            {0, 0, 0, 0, 0},
+            {1, 0, 1, 0, 1}
+        };
+        
+        return countIslands(islandMat);
+        
+        
+    }
+    
+    private static int countIslands(int[][] islandMat) {
+        
+        
+        return 0;
+    }
+    
     
     public static void main(String[] args) {
       
@@ -88,6 +121,9 @@ public class Search {
                 
                 //DFS
                 DFS(G,G.getVertex("A"));
+                
+                //FIND Number of ISLANDS in 2-D bool matrix
+                findNumIslands();
     }//main
     
 }//Search
