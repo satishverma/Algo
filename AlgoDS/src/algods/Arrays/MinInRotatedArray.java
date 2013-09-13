@@ -49,7 +49,7 @@ public class MinInRotatedArray {
     
     public static void main(String[] args) {
         
-        int arr1[] =  {2, 3, 4};
+        int arr1[] =  {2, 3, 4,1};
         System.out.println("Min Element = " + findMin(arr1,0,arr1.length-1));
     }
     
