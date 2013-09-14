@@ -14,62 +14,44 @@ public class Selection {
 
     private static int select(int[] arr, int k, int low, int high) {
         //PIVOT is first element
-        System.out.println("low high " + low + " " + high);
+        System.out.println("------------------------------------------");
+        printArray(arr);
+        System.out.println("k low high  "+ " "+k+" "+ low + " " + high);
 
-        if (low == high) {
-            return arr[low];
-        }
-        if (high < low) {
-            return -1;
-        }
-        if ((high - low) == 1) {
-            return arr[low];
-        }
-
-        int[] aux = new int[high - low];
-        int currmin = low;
-        int currmax = high - 1;
-        System.out.println("currmin currmax " + currmin + " " + currmax);
-
-
-        //hign n low are included
-        for (int i = low + 1; i < high; i++) {
-            //System.out.println(i);
-            if (arr[i] < arr[low]) {
-                aux[currmin++] = arr[i];
+        
+                
+        //pivot = arr[low]
+        
+        int left=low;int right=high;int pivot=arr[low];
+        //System.out.println("l r start while" + left + " " + right);
+        while(left<right) {
+            
+            if(arr[left]>=pivot) {
+                //swap left n right
+                int tmp=arr[left];
+                arr[left]=arr[right];
+                arr[right]=tmp;
+                right--;
+            } else {
+                left++;
             }
-            if (arr[i] > arr[low]) {
-                aux[currmax--] = arr[i];
-            }
-
+            //printArray(arr);
+            //System.out.println("l r in while" + left + " " + right);
         }
-        for (int i = currmin; i <= currmax; i++) {
-            aux[i] = arr[low];
-        }
+        //decide whether to left-- or right++
+        if(arr[left]>=pivot)
+            left--;
+        else right++;
+        
+        printArray(arr);
+        System.out.println("l r " + left + " " + right);
 
-
-        printArray(aux);
-        System.out.println("currmin " + currmin);
-        System.out.println("currmax " + currmax);
-
-        //0...curmin-1 is left , currmax+1...high is right and currmin to currmax is kth values all INCLUSIVE RANGES 
-
-
-        if (currmin <= k && k <= currmax) {
-            System.out.println("Done");
-            return arr[low];
-        }
-
-        if (k < (currmin)) {
-            select(aux, k, low, currmin);
-        }
-        if (k > (currmax)) {
-            select(aux, k - currmax - 1, currmax + 1, high);
-        }
-
-
-
-        return 0;
+        //smaller than pivot is arr between low and left inclusive
+        //>= pivot is arr between right and high inclusive
+        if(k==low || high==k) return arr[k];
+        if(k<=left) select(arr,k,low,left);
+        if(k>=right) select(arr,k,right,high);
+        return arr[k];
     }
 
     public static int selectKth(int[] arr, int k) {
@@ -121,11 +103,11 @@ public class Selection {
     }
 
     public static void main(String[] args) {
-        int[] arr = {3, 1, 2, 3, 3, 1, 4, 6, 9, 5, 4};
-        int k = 10;
-        // System.out.println("Code Result "+select(arr,k,0,arr.length));//return the kth elements in array a[k]
-
-
+        int[] arr = {3, 1, 14,14,11,2, 3,2,8,10,11};
+        int k =5;
+        //System.out.println("Code Result "+select(arr,k,0,arr.length-1));//return the kth elements in array a[k]
+        int res =select(arr,k,0,arr.length-1);
+        System.out.println("Res" + res);
         System.out.println("SelectKth " + selectKth(arr, k));
         Arrays.sort(arr);
         System.out.println("CorrectAns  " + arr[k]); //k elemenets are smaller , we want k-1 th elements
