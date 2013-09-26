@@ -18,7 +18,9 @@ public class WordBreak {
     }
     
     public static boolean checkPresent(String s) {
+        System.out.println(s);
         if (s.length()==0) return true;
+        
         
         for (int i=0;i<s.length();i++) {
             if(dMap.containsKey(s.substring(0, i+1)) && checkPresent(s.substring(i+1))) {
@@ -31,7 +33,7 @@ public class WordBreak {
     public static void main(String[] args) {
         String[] dict = { "i", "like", "sam", "sungs", "samsung", "mobile", "ice", "cream", "icecream", "man", "go", "mango"};
         String input2 ="igo";
-        String input1 = "samsungss";
+        String input1 = "samsungs";
         
         for (int i=0;i<dict.length;i++) {
             dMap.put(dict[i], 1);
