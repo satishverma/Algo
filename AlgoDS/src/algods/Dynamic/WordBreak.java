@@ -7,12 +7,13 @@ package algods.Dynamic;
 import java.util.HashMap;
 
 /**
- *
+ *http://www.geeksforgeeks.org/dynamic-programming-set-32-word-break-problem/
  * @author sverma
  */
 public class WordBreak {
     public static HashMap<String,Integer> dMap = new HashMap<String,Integer>();
-  
+    public static HashMap<String,Boolean> cache = new HashMap<String,Boolean>();
+    
     public static boolean check(String p, String s) {
        return false;
     }
@@ -24,6 +25,7 @@ public class WordBreak {
         
         for (int i=0;i<s.length();i++) {
             if(dMap.containsKey(s.substring(0, i+1)) && checkPresent(s.substring(i+1))) {
+                
                 return true;
             } 
         }
@@ -33,7 +35,7 @@ public class WordBreak {
     public static void main(String[] args) {
         String[] dict = { "i", "like", "sam", "sungs", "samsung", "mobile", "ice", "cream", "icecream", "man", "go", "mango"};
         String input2 ="igo";
-        String input1 = "samsungs";
+        String input1 = "igoicemangdo";
         
         for (int i=0;i<dict.length;i++) {
             dMap.put(dict[i], 1);
@@ -55,3 +57,10 @@ public class WordBreak {
     }
     
 }
+
+
+/*
+ * 
+ * 
+ * 
+ */
